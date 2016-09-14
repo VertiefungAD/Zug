@@ -6,7 +6,7 @@ public class Waggon {
     String name;
     Waggon next;
 
-    public Waggon(String value, String name) {
+    public Waggon(String value) {
         this.value = value;
     }
 

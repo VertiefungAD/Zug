@@ -2,19 +2,22 @@
  * Created by doetken on 14.09.2016.
  */
 public class Lok {
-    Waggon first;
-    Waggon wagen;
-
+    private Waggon first;
 
     public Lok(String valueFirst) {
-        first = new Waggon(valueFirst, "first");
+        first = new Waggon(valueFirst);
     }
 
     public void addValue(String value) {
-        this.wagen = new Waggon(value, ("neuerWaggon" + this.size()));
-        this.wagen.setValue(value);
-        this.wagen.setNext(wagen);
-//        todo: Name, um einen "next" zu ermöglichen...
+        if (this.first == null) {
+            this.first = new Waggon(value);
+        } else {
+            Waggon w = this.first;
+            while (w.getNext() != null) {
+                w = w.getNext();
+            }
+            w.setNext(new Waggon(value));
+        }
     }
 
     public int size() {
@@ -32,7 +35,7 @@ public class Lok {
 
     public String getValue(int pos) {
         Waggon w = first;
-        for (int i = 0; i < pos-1; i++) {
+        for (int i = 0; i < pos - 1; i++) {
             w = w.getNext();
         }
         return w.getValue();
