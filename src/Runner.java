@@ -6,7 +6,8 @@ public class Runner {
         Lok zug1 = new Lok("Kohle_1");
         zug1.addValue("Oel_2");
         zug1.addValue("Test_3");
-        zug1.getValue(1);
+        System.out.println(zug1.getValue(2));
+        System.out.println(zug1.size());
 
     }
 }

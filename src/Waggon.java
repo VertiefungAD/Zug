@@ -3,9 +3,10 @@
  */
 public class Waggon {
     String value;
+    String name;
     Waggon next;
 
-    public Waggon(String value) {
+    public Waggon(String value, String name) {
         this.value = value;
     }
 

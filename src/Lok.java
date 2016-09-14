@@ -3,20 +3,17 @@
  */
 public class Lok {
     Waggon first;
+    Waggon wagen;
 
 
     public Lok(String valueFirst) {
-        first = new Waggon(valueFirst);
+        first = new Waggon(valueFirst, "first");
     }
 
     public void addValue(String value) {
-        String name = "neuerWaggon" + this.size() + 1;
-        Waggon name;
-        for (int i = 0; i < this.size(); i++) {
-            name = new Waggon(value);
-        }
-        name.setValue(value);
-
+        this.wagen = new Waggon(value, ("neuerWaggon" + this.size()));
+        this.wagen.setValue(value);
+        this.wagen.setNext(wagen);
 //        todo: Name, um einen "next" zu ermöglichen...
     }
 
@@ -35,7 +32,7 @@ public class Lok {
 
     public String getValue(int pos) {
         Waggon w = first;
-        for (int i = 0; i < pos; i++) {
+        for (int i = 0; i < pos-1; i++) {
             w = w.getNext();
         }
         return w.getValue();
