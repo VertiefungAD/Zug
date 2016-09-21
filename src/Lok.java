@@ -30,7 +30,7 @@ public class Lok {
             w = first;
             while (w.getNext() != null) {
                 counter++;
-                w=w.getNext();
+                w = w.getNext();
             }
         }
         return counter;
@@ -48,6 +48,26 @@ public class Lok {
             }
         }
         return w.getValue();
+    }
+
+    public void insertValue(int pos, String value) {
+        if (pos <= this.size()) {
+            Waggon w1 = this.first;
+            Waggon w2 = this.first;
+            Waggon wNeu = new Waggon(value);
+            //              while (pos <= this.size()) {
+            //                w = w.getNext();
+            //              pos++;
+            for (int i = 0; i < pos + 1; i++) {
+                w1 = w1.getNext();
+            }
+            for (int i = 0; i < pos; i++) {
+                w2 = w2.getNext();
+
+            }
+            w2.setNext(wNeu);
+            wNeu.setNext(w1);
+        }
     }
 }
 
