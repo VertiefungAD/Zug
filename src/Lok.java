@@ -4,9 +4,12 @@
 public class Lok {
     private Waggon first;
 
-    public Lok(String valueFirst) {
-        first = new Waggon(valueFirst);
+    public Lok() {
+        first = new Waggon("Kohle_1");
     }
+
+    //  String valueFirst
+    //valueFirst
 
     public void addValue(String value) {
         if (this.first == null) {
@@ -24,19 +27,25 @@ public class Lok {
         int counter = 0;
         Waggon w;
         if (this.first != null) {
-            counter = 1;
             w = first;
             while (w.getNext() != null) {
                 counter++;
+                w=w.getNext();
             }
         }
         return counter;
     }
 
     public String getValue(int pos) {
-        Waggon w = first;
-        for (int i = 0; i < pos - 1; i++) {
-            w = w.getNext();
+        Waggon w = this.first;
+//        for (int i = 0; i < pos - 1; i++) {
+        //           w = w.getNext();
+        //     }
+        if (pos >= this.size()) {
+            while (pos <= this.size()) {
+                w = w.getNext();
+                pos++;
+            }
         }
         return w.getValue();
     }
