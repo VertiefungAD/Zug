@@ -8,7 +8,7 @@ public class Runner {
         zug1.addValue("Kohle_1");
         zug1.addValue("Oel_2");
         zug1.addValue("Test_3");
-         System.out.println(zug1.size());
+        System.out.println(zug1.size());
 
 //        String[] testArray = {"Kohle_1", "Oel_2", "Test_3"};
 
@@ -16,13 +16,16 @@ public class Runner {
 //            System.out.println(testArray[i]);
 //        }
 
-        zug1.insertValue(2,"Testerer");
+        zug1.insertValue(2, "Testerer");
         System.out.println(zug1.getValue(4));
 
 
-        System.out.println("KETTE:");
-        for (int i = 0; i < zug1.size(); i++) {
-            System.out.println(zug1.getValue(i));
-        }
+//        System.out.println("KETTE:");
+//        for (int i = 0; i < zug1.size(); i++) {
+//            System.out.println(zug1.getValue(i));
+//        }
+
+        zug1.insert(2, "NeuerInsert erfolgreich");
+        System.out.println(zug1.getValue(0));
     }
 }
