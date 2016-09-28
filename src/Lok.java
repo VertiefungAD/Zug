@@ -69,5 +69,30 @@ public class Lok {
             wNeu.setNext(w1);
         }
     }
+
+    public void insert(int pos, String valueNeu) {
+        Waggon w = this.first;
+        Waggon wNext = this.first;
+
+
+//      1. zur Position gehen
+        if (pos >= this.size()) {
+            while (pos <= this.size()) {
+                w = w.getNext();
+                pos++;
+            }
+//       2. nächsten Waggon merken
+            while (pos <= this.size() + 1) {
+                wNext = wNext.getNext();
+                pos++;
+            }
+        }
+//        3. neuen Waggon einfügen
+        Waggon wNeu = new Waggon(valueNeu);
+        w.setNext(wNeu);
+        wNeu.setNext(wNext);
+
+
+    }
 }
 
