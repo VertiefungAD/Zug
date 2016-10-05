@@ -11,7 +11,7 @@ public class Lok {
     //  String valueFirst
     //valueFirst
 
-    public void addValue(String value) {
+    public void addValue(Object value) {
         if (this.first == null) {
             this.first = new Waggon(value);
         } else {
@@ -36,7 +36,7 @@ public class Lok {
         return counter;
     }
 
-    public String getValue(int pos) {
+    public Object getValue(int pos) {
         Waggon w = this.first;
 //        for (int i = 0; i < pos - 1; i++) {
         //           w = w.getNext();
@@ -50,7 +50,7 @@ public class Lok {
         return w.getValue();
     }
 
-    public void insertValue(int pos, String value) {
+    public void insertValue(int pos, Object value) {
         if (pos <= this.size()) {
             Waggon w1 = this.first;
             Waggon w2 = this.first;
@@ -70,29 +70,45 @@ public class Lok {
         }
     }
 
-    public void insert(int pos, String valueNeu) {
+    public void insert(int pos, Object valueNeu) {
         Waggon w = this.first;
         Waggon wNext = this.first;
-
+        int i = 0;
 
 //      1. zur Position gehen
-        if (pos >= this.size()) {
-            while (pos <= this.size()) {
-                w = w.getNext();
-                pos++;
-            }
-//       2. nächsten Waggon merken
-            while (pos <= this.size() + 1) {
-                wNext = wNext.getNext();
-                pos++;
-            }
+        while (pos <= i) {
+            w = w.getNext();
+            pos++;
         }
-//        3. neuen Waggon einfügen
+//       2. nächsten Waggon merken
+        while (pos <= i + 1) {
+            wNext = wNext.getNext();
+            pos++;
+        }
+        //        3. neuen Waggon einfügen
         Waggon wNeu = new Waggon(valueNeu);
         w.setNext(wNeu);
         wNeu.setNext(wNext);
+    }
 
+    //      Einen Waggon nach Position löschen
+    public void delete(int pos) {
+//        Auf den ersten springen
+        Waggon w = this.first;
+        int i = 1;
+//        vor die Position laufen
+        while (i < pos) {
+            w = w.getNext();
+        }
+//    setNext bei w auf den übernächsten setzen
+        w.setNext(w.getNext().getNext());
+    }
 
+    //    nach Objekt suchen und dann löschen
+    public void deleteValue(String value) {
+        Waggon w = this.first;
+        while (!w.getValue().equals(value)) w = w.getNext();
+        w.setNext(w.getNext().getNext());
     }
 }
 
