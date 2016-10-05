@@ -3,7 +3,6 @@
  */
 public class Waggon {
     Object value;
-    String name;
     Waggon next;
 
     public Waggon(Object value) {

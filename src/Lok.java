@@ -5,9 +5,8 @@ public class Lok {
     private Waggon first;
 
     public Lok() {
-        first = new Waggon("Kohle_1");
-    }
 
+    }
     //  String valueFirst
     //valueFirst
 
@@ -24,7 +23,7 @@ public class Lok {
     }
 
     public int size() {
-        int counter = 0;
+        int counter = 1;
         Waggon w;
         if (this.first != null) {
             w = first;
@@ -38,15 +37,13 @@ public class Lok {
 
     public Object getValue(int pos) {
         Waggon w = this.first;
-//        for (int i = 0; i < pos - 1; i++) {
-        //           w = w.getNext();
-        //     }
-        if (pos >= this.size()) {
-            while (pos <= this.size()) {
-                w = w.getNext();
-                pos++;
-            }
+        for (int i = 1; i < pos; i++) {
+            w = w.getNext();
         }
+//        while (pos <= this.size()) {
+//            w = w.getNext();
+//            pos++;
+//        }
         return w.getValue();
     }
 
@@ -92,22 +89,29 @@ public class Lok {
     }
 
     //      Einen Waggon nach Position löschen
-    public void delete(int pos) {
+    public void remove(int pos) {
 //        Auf den ersten springen
         Waggon w = this.first;
-        int i = 1;
+        int i = 0;
 //        vor die Position laufen
-        while (i < pos) {
+        if (pos == 0) {
             w = w.getNext();
+        }
+        while (pos <= i) {
+            w = w.getNext();
+            pos++;
         }
 //    setNext bei w auf den übernächsten setzen
         w.setNext(w.getNext().getNext());
     }
 
+    //    todo: wenn 0...
     //    nach Objekt suchen und dann löschen
-    public void deleteValue(String value) {
+    public void removeValue(Object value) {
         Waggon w = this.first;
-        while (!w.getValue().equals(value)) w = w.getNext();
+        while (!w.getNext().getValue().equals(value)) {
+            w = w.getNext();
+        }
         w.setNext(w.getNext().getNext());
     }
 }
