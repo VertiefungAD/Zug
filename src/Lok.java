@@ -88,28 +88,24 @@ public class Lok {
         wNeu.setNext(wNext);
     }
 
-    //      Einen Waggon nach Position löschen
     public void remove(int pos) {
-//        Auf den ersten springen
         Waggon w = this.first;
-        int i = 0;
-//        vor die Position laufen
         if (pos == 0) {
-            w = w.getNext();
+            Waggon neuFirst = w.getNext();
+            this.first = neuFirst;
+        } else {
+            int i = 0;
+            while (pos <= i) {
+                w = w.getNext();
+                pos++;
+            }
+            w.setNext(w.getNext().getNext());
         }
-        while (pos <= i) {
-            w = w.getNext();
-            pos++;
-        }
-//    setNext bei w auf den übernächsten setzen
-        w.setNext(w.getNext().getNext());
     }
 
-    //    todo: wenn 0...
-    //    nach Objekt suchen und dann löschen
     public void removeValue(Object value) {
         Waggon w = this.first;
-        while (!w.getNext().getValue().equals(value)) {
+        while (!(w.getNext().getValue().equals(value))) {
             w = w.getNext();
         }
         w.setNext(w.getNext().getNext());
