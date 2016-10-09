@@ -7,9 +7,9 @@ public class Runner {
         tester.test();
     }
 
+//
 //    private static void test() {
 //        Lok testZug = new Lok();
-//
 //
 //
 //        Object eins = new String("Erster");
