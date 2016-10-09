@@ -37,13 +37,11 @@ public class Lok {
 
     public Object getValue(int pos) {
         Waggon w = this.first;
-        for (int i = 1; i < pos; i++) {
-            w = w.getNext();
+        if (pos != 0) {
+            for (int i = 1; i < pos; i++) {
+                w = w.getNext();
+            }
         }
-//        while (pos <= this.size()) {
-//            w = w.getNext();
-//            pos++;
-//        }
         return w.getValue();
     }
 

@@ -37,7 +37,7 @@ public class Testklasse {
         this.zug.addValue(this.fuenf);
         this.zug.addValue(this.sechs);
         this.zug.addValue(this.sieben);
-
+        System.out.println("Direkter Vergleich: ");
         for (int i = 0; i < 6; i++) {
             if (this.zug.getValue(i) != this.array[i]) {
                 ergAddValueTest = true;
