@@ -1,0 +1,129 @@
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Runner1 {
+    public static void main(String[] args) {
+
+        if (test1()) {
+            System.out.println("Test1: true");
+            if (test2()) {
+                System.out.println("Test2: true");
+                if (test3()) {
+                    System.out.println("Test3: true");
+                } else System.out.println("Groﬂer Fehler Test3");
+            } else System.out.println("Groﬂer Fehler Test2");
+        } else System.out.println("Groﬂer Fehler Test1");
+
+
+    }
+
+
+    private static boolean test1() {
+        boolean pr¸fer = true;
+        Lok myLok = new Lok();
+
+        Object[] array = new Object[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = "Hallo" + i;
+            myLok.addValue(array[i]);
+        }
+
+        //Fehler Provozieren
+//        myLok.remove(5);
+//        myLok.addValue("Hallo3");
+
+        if (array.length == myLok.size()) {
+            for (int i = 0; i < array.length  && pr¸fer; i++) {
+                if (array[i] == myLok.getValue(i)) {
+                    pr¸fer = true;
+                } else {
+                    pr¸fer = false;
+                    System.out.println("Fehler im Test 1 - Der Inhalt an Position " + i + " stimmt nicht mit dem Inhalt des Arrays ¸berein.");
+                }
+            }
+            return pr¸fer;
+        } else {
+            System.out.println("Fehler im Test 1 - Die L‰nge des Zugs stimmt nicht mit der L‰nge des Arrays ¸berein");
+            return false;
+        }
+    }
+
+    private static boolean test2() {
+        boolean pr¸fer = false;
+        Lok myLok = new Lok();
+
+        Object[] array = new Object[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = "Hallo" + i;
+            myLok.addValue(array[i]);
+        }
+
+        myLok.insert(0, "Hallo" + 1);
+        myLok.insert(5, "Hallo" + 3);
+        myLok.insert(12, "Hallo" + 5);
+
+        if (myLok.getValue(0) == "Hallo" + 1) {
+            if (myLok.getValue(5) == "Hallo" + 3) {
+                if (myLok.getValue(12) == "Hallo" + 5) {
+                    pr¸fer = true;
+                } else {
+                    System.out.println("Fehler im Test 2 - Beim Einf¸gen eines Objekts an Position 12");
+                    pr¸fer = false;
+                }
+            } else {
+                System.out.println("Fehler im Test 2 - Beim Einf¸gen eines Objekts an Position 5");
+                pr¸fer = false;
+            }
+        } else {
+            System.out.println("Fehler im Test 2 - Beim Einf¸gen eines Objekts an Position 0");
+            pr¸fer = false;
+        }
+
+        return pr¸fer;
+
+    }
+
+    private static boolean test3() {
+        Lok myLok = new Lok();
+        Object[] array = new Object[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = "Hallo" + i;
+            myLok.addValue(array[i]);
+        }
+        myLok.insert(5, "Hallo" + 3);
+
+        //System.out.println(myLok.toString());;
+
+        Object testObjekt = myLok.getValue(2);
+        myLok.remove(1);
+
+        boolean pruefer = true;
+        if (myLok.getValue(1) != testObjekt) {
+            System.out.println("Fehler im Test 3 - Objekt an Position nicht richtig entfernt.");
+            pruefer = false;
+        }
+        myLok.addValue("Hallo"+3);
+        myLok.remove("Hallo"+3);
+        if (pruefer && myLok.getValue(3) != "Hallo"+3) {
+            System.out.println("Fehler im Test 3 - Erstes Objekt mit ‹bereinstimmung nicht richtig entfernt.");
+            pruefer = false;
+        }
+        myLok.remove("Hallo"+3);
+        if (pruefer && myLok.getValue(8) != "Hallo"+3) {
+            System.out.println("Fehler im Test 3 - Zweites Objekt mit ‹bereinstimmung nicht richtig entfernt.");
+            pruefer = false;
+        }
+        myLok.remove("Hallo"+3);
+        for (int i = 0; i < myLok.size(); i++) {
+            if (pruefer && myLok.getValue(i) == "Hallo"+3) {
+                System.out.println("Fehler im Test 3 - Alle Objekte mit ‹bereinstimmung nicht richtig entfernt.");
+                pruefer = false;
+            }
+        }
+        myLok.remove("Hallo"+3);
+        return pruefer;
+    }
+}
+

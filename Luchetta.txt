@@ -1,0 +1,46 @@
+        private static boolean test1() {    // Test der addValue Methode bei leerer und befüllter Liste.
+            Liste testListe = new Liste();
+            testListe.addValue(999);
+            testListe.addValue(888);
+            if (!testListe.getValue(0).equals(999)) {
+                System.err.println("Fehler: Wert konnte der Position 0 nicht hinzugefügt werden.");
+                return false;
+            }
+            if (!testListe.getValue(1).equals(888)) {
+                System.err.println("Fehler: Wert konnte der Position 1+ nicht hinzugefügt werden.");
+                return false;
+            }
+            return true;
+        }
+        private static boolean test2() {    // Test der remove Methode mit Position, mit Sonderfall Position 0.
+            Liste testListe = new Liste();
+            testListe.addValue(999);
+            testListe.addValue(888);
+            testListe.remove(1);
+            if (!(testListe.size() == 1)) {
+                System.err.println("Fehler: Wert konnte an der Position 1+ nicht gelöscht werden.");
+                return false;
+            }
+            testListe.remove(0);
+            if (!(testListe.size() == 0)) {
+                System.err.println("Fehler: Wert konnte an der Position 0 nicht gelöscht werden.");
+                return false;
+            }
+            return true;
+        }
+        private static boolean test3() {    // Test der remove Methode mit Objektsuche. Mit Sonderfall Position 0.
+            Liste testListe = new Liste();
+            testListe.addValue(888);
+            testListe.addValue(999);
+            testListe.remove(new Integer(999));
+            if (!(testListe.size() == 1)) {
+                System.err.println("Fehler: Wert konnte an der Position 1+ nicht gelöscht werden.");
+                return false;
+            }
+            testListe.remove(new Integer(888));
+            if (!(testListe.size() == 0)) {
+                System.err.println("Fehler: Wert konnte an der Position 0 nicht gelöscht werden.");
+                return false;
+            }
+            return true;
+        }
