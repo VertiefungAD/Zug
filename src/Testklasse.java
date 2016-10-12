@@ -3,7 +3,7 @@
  */
 public class Testklasse {
 
-    private Lok zug = new Lok();
+    private List zug = new List();
     private Object eins = new String("Erster");
     private Object zwei = new String("Zweiter");
     private Object drei = new String("Dritter");
@@ -24,7 +24,7 @@ public class Testklasse {
         if (insertValueTest()) System.out.println("Die insertValue() - Methode hat ein Fehler produziert.");
 //        if (getValueTest()) System.out.println("Die getValue() - Methode hat ein Fehler produziert.");
         if (removeTest()) System.out.println("Die remove() - Methode hat ein Fehler produziert.");
-        if (removeValueTest()) System.out.println("Die removeValueTest() - Methode hat ein Fehler produziert.");
+//        if (removeValueTest()) System.out.println("Die removeValueTest() - Methode hat ein Fehler produziert.");
     }
 
     private boolean addValueTest() {
@@ -38,10 +38,8 @@ public class Testklasse {
         this.zug.addValue(this.sechs);
         this.zug.addValue(this.sieben);
         System.out.println("Direkter Vergleich: ");
-        for (int i = 0; i < 6; i++) {
-            if (this.zug.getValue(i) != this.array[i]) {
-                ergAddValueTest = true;
-            }
+        for (int i = 0; i < 7; i++) {
+            if (this.zug.getValue(i) != this.array[i]) ergAddValueTest = true;
             System.out.println(this.zug.getValue(i));
             System.out.println(this.array[i]);
         }
@@ -76,4 +74,5 @@ public class Testklasse {
 
         return ergRemoveValueTest;
     }
+
 }
