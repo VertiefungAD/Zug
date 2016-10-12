@@ -38,7 +38,7 @@ public class Lok {
     public Object getValue(int pos) {
         Waggon w = this.first;
         if (pos != 0) {
-            for (int i = 1; i < pos; i++) {
+            for (int i = 0; i < pos; i++) {
                 w = w.getNext();
             }
         }
