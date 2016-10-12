@@ -1,30 +1,30 @@
 /**
  * Created by doetken on 14.09.2016.
  */
-public class Lok {
-    private Waggon first;
+public class List<T> {
+    private Waggon<T> first;
 
-    public Lok() {
+    public List() {
 
     }
     //  String valueFirst
     //valueFirst
 
-    public void addValue(Object value) {
+    public void addValue(T value) {
         if (this.first == null) {
-            this.first = new Waggon(value);
+            this.first = new Waggon<T>(value);
         } else {
-            Waggon w = this.first;
+            Waggon<T> w = this.first;
             while (w.getNext() != null) {
                 w = w.getNext();
             }
-            w.setNext(new Waggon(value));
+            w.setNext(new Waggon<T>(value));
         }
     }
 
     public int size() {
         int counter = 1;
-        Waggon w;
+        Waggon<T> w;
         if (this.first != null) {
             w = first;
             while (w.getNext() != null) {
@@ -35,8 +35,8 @@ public class Lok {
         return counter;
     }
 
-    public Object getValue(int pos) {
-        Waggon w = this.first;
+    public T getValue(int pos) {
+        Waggon<T> w = this.first;
         if (pos != 0) {
             for (int i = 0; i < pos; i++) {
                 w = w.getNext();
@@ -45,25 +45,9 @@ public class Lok {
         return w.getValue();
     }
 
-    //   public void insertValue(int pos, Object value) {
-    //      if (pos <= this.size()) {
-    //        Waggon w1 = this.first;
-    //      Waggon w2 = this.first;
-    //    Waggon wNeu = new Waggon(value);
-    //  for (int i = 0; i < pos + 1; i++) {
-    //    w1 = w1.getNext();
-    //}
-    //           for (int i = 0; i < pos; i++) {
-    //             w2 = w2.getNext();
-    //       }
-    //     w2.setNext(wNeu);
-    //   wNeu.setNext(w1);
-    //      }
-    // }
-
-    public void insert(int pos, Object valueNeu) {
-        Waggon w = this.first;
-        Waggon wNext = this.first;
+    public void insert(int pos, T valueNeu) {
+        Waggon<T> w = this.first;
+        Waggon<T> wNext = this.first;
         int i = 0;
 
 //      1. zur Position gehen
@@ -77,32 +61,58 @@ public class Lok {
             pos++;
         }
         //        3. neuen Waggon einfügen
-        Waggon wNeu = new Waggon(valueNeu);
+        Waggon<T> wNeu = new Waggon<T>(valueNeu);
         w.setNext(wNeu);
         wNeu.setNext(wNext);
     }
 
     public void remove(int pos) {
-        Waggon w = this.first;
+        Waggon<T> w = this.first;
         if (pos == 0) {
-            Waggon neuFirst = w.getNext();
+            Waggon<T> neuFirst = w.getNext();
             this.first = neuFirst;
         } else {
             int i = 0;
-            while (pos <= i) {
+            while (i < pos - 1) {
                 w = w.getNext();
-                pos++;
+                i++;
             }
             w.setNext(w.getNext().getNext());
         }
     }
 
-    public void removeValue(Object value) {
-        Waggon w = this.first;
+    public void removeValue(T value) {
+        Waggon<T> w = this.first;
         while (!(w.getNext().getValue().equals(value))) {
             w = w.getNext();
         }
         w.setNext(w.getNext().getNext());
     }
+
+    private class Waggon<T> {
+        private T value;
+        private Waggon<T> next;
+
+        public Waggon(T value) {
+            this.value = value;
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        public Waggon<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Waggon<T> next) {
+            this.next = next;
+        }
+    }
+
 }
 
