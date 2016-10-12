@@ -1,0 +1,71 @@
+
+/**
+ * Created by abrunner on 11.10.2016.
+ */
+public class TestClass {
+    public static void main(String[] args) {
+        System.out.println("test1: " + test1() );
+        System.out.println("test2: " + test2() );
+        System.out.println("test3: " + test3() );
+        System.out.println("test4: " + test4() );
+        System.out.println("test5: " + test5() );
+    }
+
+    private static boolean test1() {
+
+        //leere lock erstellen
+        Lok lok1 = new Lok();
+        //wagon anhängen
+        lok1.addValue("testlockstueck");
+        // prüfen ob vlaue hinzugefügt wurde
+        if (!lok1.getValue(0).equals("testlockstueck")) {
+            System.out.println("Fehler, weil der Inhalt nicht stimmt");
+            return false;
+        }
+        return true;
+    }
+    private static boolean test2(){
+        Lok lok1 = new Lok();
+        lok1.addValue("rrrr");
+        lok1.addValue("uuuu");
+        lok1.insert("gelb", 1);
+        if (!lok1.getValue(1).equals("gelb")) {
+            System.out.println("Fehler, weil der Inhalt nicht stimmt");
+            return false;
+        }
+        return true;
+    }
+    private static boolean test3(){
+        Lok lok1 = new Lok();
+        lok1.addValue("JaaaPppaaa");
+        if (!(lok1.size() == 1)){
+            System.out.println("Fehler, SIZE()");
+            return false;
+        }
+        return true;
+    }
+    private static boolean test4(){
+        Lok lok1 = new Lok();
+        lok1.addValue("rrrr");
+        lok1.addValue("uuuu");
+        lok1.insert("gelb", 1);
+        lok1.removeValue("gelb");
+        if (lok1.getValue(1).equals("gelb")){
+            System.out.println("Fehler,  VALUE nicht entfernt");
+            return false;
+        }
+        return true;
+    }
+    private static boolean test5(){
+        Lok lok1 = new Lok();
+        lok1.addValue("rrrr");
+        lok1.addValue("uuuu");
+        lok1.insert("gelb", 1);
+        lok1.remove(1);
+        if (lok1.getValue(1).equals("gelb")){
+            System.out.println("Fehler, POSITION nicht entfernt");
+            return false;
+        }
+        return true;
+    }
+}
