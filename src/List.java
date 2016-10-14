@@ -5,18 +5,17 @@ public class List<T> {
     private Waggon<T> first;
 
     public List() {
-
     }
 
     public void add(T value) {
         if (this.first == null) {
-            this.first = new Waggon<T>(value);
+            this.first = new Waggon<>(value);
         } else {
             Waggon<T> w = this.first;
             while (w.next != null) {
                 w = w.next;
             }
-            w.next = new Waggon<T>(value);
+            w.next = new Waggon<>(value);
         }
     }
 
@@ -35,12 +34,14 @@ public class List<T> {
 
     public T get(int pos) {
         Waggon<T> w = this.first;
-        if (pos != 0) {
+        if (pos < size()) {
             for (int i = 0; i < pos; i++) {
                 w = w.next;
             }
+            return w.value;
+        } else {
+            throw new RuntimeException("Position überschreitet Größe");
         }
-        return w.value;
     }
 
     public void add(int pos, T valueNeu) {
