@@ -18,29 +18,29 @@ public class Testklasse {
     }
 
     public void test() {
-        if (addValueTest())
+        if (addTest())
             System.out.println("Die addValue() - Methode oder die size() - Methode hat ein Fehler produziert.");
 //        if (insertTest()) System.out.println("Die insert() - Methode hat ein Fehler produziert.");
-        if (insertValueTest()) System.out.println("Die insertValue() - Methode hat ein Fehler produziert.");
+        if (insertTest()) System.out.println("Die insertValue() - Methode hat ein Fehler produziert.");
 //        if (getValueTest()) System.out.println("Die getValue() - Methode hat ein Fehler produziert.");
         if (removeTest()) System.out.println("Die remove() - Methode hat ein Fehler produziert.");
 //        if (removeValueTest()) System.out.println("Die removeValueTest() - Methode hat ein Fehler produziert.");
     }
 
-    private boolean addValueTest() {
+    private boolean addTest() {
         boolean ergAddValueTest = false;
-        this.zug.addValue(this.eins);
-        this.zug.addValue(this.zwei);
+        this.zug.add(this.eins);
+        this.zug.add(this.zwei);
         if (this.zug.size() != 2) ergAddValueTest = true;
-        this.zug.addValue(this.drei);
-        this.zug.addValue(this.vier);
-        this.zug.addValue(this.fuenf);
-        this.zug.addValue(this.sechs);
-        this.zug.addValue(this.sieben);
+        this.zug.add(this.drei);
+        this.zug.add(this.vier);
+        this.zug.add(this.fuenf);
+        this.zug.add(this.sechs);
+        this.zug.add(this.sieben);
         System.out.println("Direkter Vergleich: ");
         for (int i = 0; i < 7; i++) {
-            if (this.zug.getValue(i) != this.array[i]) ergAddValueTest = true;
-            System.out.println(this.zug.getValue(i));
+            if (this.zug.get(i) != this.array[i]) ergAddValueTest = true;
+            System.out.println(this.zug.get(i));
             System.out.println(this.array[i]);
         }
         return ergAddValueTest;
@@ -51,7 +51,7 @@ public class Testklasse {
     //         return ergInsertTest;
     //    }
 
-    private boolean insertValueTest() {
+    private boolean insertTest() {
         boolean ergInsertValueTest = false;
 
         return ergInsertValueTest;
@@ -68,11 +68,4 @@ public class Testklasse {
 
         return ergRemoveTest;
     }
-
-    private boolean removeValueTest() {
-        boolean ergRemoveValueTest = false;
-
-        return ergRemoveValueTest;
-    }
-
 }

@@ -7,18 +7,16 @@ public class List<T> {
     public List() {
 
     }
-    //  String valueFirst
-    //valueFirst
 
-    public void addValue(T value) {
+    public void add(T value) {
         if (this.first == null) {
             this.first = new Waggon<T>(value);
         } else {
             Waggon<T> w = this.first;
-            while (w.getNext() != null) {
-                w = w.getNext();
+            while (w.next != null) {
+                w = w.next;
             }
-            w.setNext(new Waggon<T>(value));
+            w.next = new Waggon<T>(value);
         }
     }
 
@@ -27,66 +25,66 @@ public class List<T> {
         Waggon<T> w;
         if (this.first != null) {
             w = first;
-            while (w.getNext() != null) {
+            while (w.next != null) {
                 counter++;
-                w = w.getNext();
+                w = w.next;
             }
         }
         return counter;
     }
 
-    public T getValue(int pos) {
+    public T get(int pos) {
         Waggon<T> w = this.first;
         if (pos != 0) {
             for (int i = 0; i < pos; i++) {
-                w = w.getNext();
+                w = w.next;
             }
         }
-        return w.getValue();
+        return w.value;
     }
 
-    public void insert(int pos, T valueNeu) {
+    public void add(int pos, T valueNeu) {
         Waggon<T> w = this.first;
         Waggon<T> wNext = this.first;
         int i = 0;
 
 //      1. zur Position gehen
         while (pos <= i) {
-            w = w.getNext();
+            w = w.next;
             pos++;
         }
 //       2. nächsten Waggon merken
         while (pos <= i + 1) {
-            wNext = wNext.getNext();
+            wNext = wNext.next;
             pos++;
         }
         //        3. neuen Waggon einfügen
         Waggon<T> wNeu = new Waggon<T>(valueNeu);
-        w.setNext(wNeu);
-        wNeu.setNext(wNext);
+        w.next = wNeu;
+        wNeu.next = wNext;
     }
 
     public void remove(int pos) {
         Waggon<T> w = this.first;
         if (pos == 0) {
-            Waggon<T> neuFirst = w.getNext();
+            Waggon<T> neuFirst = w.next;
             this.first = neuFirst;
         } else {
             int i = 0;
             while (i < pos - 1) {
-                w = w.getNext();
+                w = w.next;
                 i++;
             }
-            w.setNext(w.getNext().getNext());
+            w.next = w.next.next;
         }
     }
 
-    public void removeValue(T value) {
+    public void remove(T value) {
         Waggon<T> w = this.first;
-        while (!(w.getNext().getValue().equals(value))) {
-            w = w.getNext();
+        while (!(w.next.value.equals(value))) {
+            w = w.next;
         }
-        w.setNext(w.getNext().getNext());
+        w.next = w.next.next;
     }
 
     private class Waggon<T> {
@@ -96,23 +94,6 @@ public class List<T> {
         public Waggon(T value) {
             this.value = value;
         }
-
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public Waggon<T> getNext() {
-            return next;
-        }
-
-        public void setNext(Waggon<T> next) {
-            this.next = next;
-        }
     }
-
 }
 
