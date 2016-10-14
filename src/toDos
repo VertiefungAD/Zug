@@ -1,0 +1,9 @@
+- Testklasse planen und implementieren
+- addValue() macht Fehler, erster Wert wird 2x eingetragen…
+- Oder getValue()-Problem
+
+- return in die if bedingung, rückgabe aber void
+- leere liste/ kein first in remove beachten
+- Attribute in jeden einzelnen Test reinpacken
+- test1()... statt sprechender Namen
+- Methodennamen an java.util.List anpassen
