@@ -34,7 +34,7 @@ public class List<T> {
 
     public T get(int pos) {
         Waggon<T> w = this.first;
-        if (pos < size()) {
+        if (pos <= size()) {
             for (int i = 0; i < pos; i++) {
                 w = w.next;
             }
@@ -72,7 +72,7 @@ public class List<T> {
             this.first = neuFirst;
         } else {
             int i = 0;
-            while (i < pos - 1) {
+            while (i < pos) {
                 w = w.next;
                 i++;
             }

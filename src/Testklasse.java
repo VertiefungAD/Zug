@@ -7,13 +7,13 @@ public class Testklasse {
     }
 
     public void test() {
-        if (!test1()) {
+        if (test1()) {
             System.out.println("Test 1 ist schief gelaufen!");
         }
-        if (!test2()) {
+        if (test2()) {
             System.out.println("Test 2 ist schief gelaufen!");
         }
-        if (!test3()) {
+        if (test3()) {
             System.out.println("Test 3 ist schief gelaufen!");
         }
     }
@@ -28,23 +28,23 @@ public class Testklasse {
         String fuenf1 = new String("Fünfter");
         String sechs1 = new String("Sechster");
         String sieben1 = new String("Siebter");
-        boolean ergAddValueTest = false;
+        boolean ergAddValueTest = true;
         zug.add(eins1);
         zug.add(zwei1);
-        if (zug.size() != 2) ergAddValueTest = true;
+        if (zug.size() != 2) ergAddValueTest = false;
         zug.add(drei1);
         zug.add(vier1);
         zug.add(fuenf1);
         zug.add(sechs1);
         zug.add(sieben1);
         for (int i = 0; i < 7; i++) {
-            if (zug.get(i) != array[i]) ergAddValueTest = true;
+            if (zug.get(i) != array[i]) ergAddValueTest = false;
         }
         return ergAddValueTest;
     }
 
     private boolean test2() {
-        boolean ergInsertValueTest = false;
+        boolean ergInsertValueTest = true;
         String[] array = {"Erster", "Zweiter", "Dritter", "Vierter"};
         List<String> zug = new List();
         String eins2 = new String("Erster");
@@ -57,14 +57,14 @@ public class Testklasse {
         zug.add(vier2);
         String neu = "Neuer";
         zug.add(1, neu);
-        if (zug.get(1) != neu) {
-            ergInsertValueTest = true;
+        if (zug.get(1).equals(neu)) {
+            ergInsertValueTest = false;
         }
         return ergInsertValueTest;
     }
 
     private boolean test3() {
-        boolean ergRemoveTest = false;
+        boolean ergRemoveTest = true;
         String[] array = {"Erster", "Zweiter", "Dritter", "Vierter"};
         List<String> zug = new List();
         String eins3 = new String("Erster");
@@ -76,13 +76,13 @@ public class Testklasse {
         zug.add(drei3);
         zug.add(vier3);
         zug.remove(1);
-        if (zug.get(1) != "Zweiter") {
-            ergRemoveTest = true;
+        if (zug.get(1).equals("Zweiter")) {
+            ergRemoveTest = false;
         }
 
         zug.remove("Zweiter");
-        if (zug.get(2) != "Dritter") {
-            ergRemoveTest = true;
+        if (zug.get(1).equals("Dritter")) {
+            ergRemoveTest = false;
         }
         return ergRemoveTest;
     }
