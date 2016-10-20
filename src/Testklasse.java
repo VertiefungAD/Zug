@@ -3,69 +3,87 @@
  */
 public class Testklasse {
 
-    private List zug = new List();
-    private Object eins = new String("Erster");
-    private Object zwei = new String("Zweiter");
-    private Object drei = new String("Dritter");
-    private Object vier = new String("Vierter");
-    private Object fuenf = new String("Fünfter");
-    private Object sechs = new String("Sechster");
-    private Object sieben = new String("Siebter");
-
-    private String[] array = {"Erster", "Zweiter", "Dritter", "Vierter", "Fünfter", "Sechster", "Siebter"};
-
     public Testklasse() {
     }
 
     public void test() {
-        if (addTest())
-            System.out.println("Die addValue() - Methode oder die size() - Methode hat ein Fehler produziert.");
-//        if (insertTest()) System.out.println("Die insert() - Methode hat ein Fehler produziert.");
-        if (insertTest()) System.out.println("Die insertValue() - Methode hat ein Fehler produziert.");
-//        if (getValueTest()) System.out.println("Die getValue() - Methode hat ein Fehler produziert.");
-        if (removeTest()) System.out.println("Die remove() - Methode hat ein Fehler produziert.");
-//        if (removeValueTest()) System.out.println("Die removeValueTest() - Methode hat ein Fehler produziert.");
+        if (!test1()) {
+            System.out.println("Test 1 ist schief gelaufen!");
+        }
+        if (!test2()) {
+            System.out.println("Test 2 ist schief gelaufen!");
+        }
+        if (!test3()) {
+            System.out.println("Test 3 ist schief gelaufen!");
+        }
     }
 
-    private boolean addTest() {
+    private boolean test1() {
+        String[] array = {"Erster", "Zweiter", "Dritter", "Vierter", "Fünfter", "Sechster", "Siebter"};
+        List<String> zug = new List();
+        String eins1 = new String("Erster");
+        String zwei1 = new String("Zweiter");
+        String drei1 = new String("Dritter");
+        String vier1 = new String("Vierter");
+        String fuenf1 = new String("Fünfter");
+        String sechs1 = new String("Sechster");
+        String sieben1 = new String("Siebter");
         boolean ergAddValueTest = false;
-        this.zug.add(this.eins);
-        this.zug.add(this.zwei);
-        if (this.zug.size() != 2) ergAddValueTest = true;
-        this.zug.add(this.drei);
-        this.zug.add(this.vier);
-        this.zug.add(this.fuenf);
-        this.zug.add(this.sechs);
-        this.zug.add(this.sieben);
-        System.out.println("Direkter Vergleich: ");
+        zug.add(eins1);
+        zug.add(zwei1);
+        if (zug.size() != 2) ergAddValueTest = true;
+        zug.add(drei1);
+        zug.add(vier1);
+        zug.add(fuenf1);
+        zug.add(sechs1);
+        zug.add(sieben1);
         for (int i = 0; i < 7; i++) {
-            if (this.zug.get(i) != this.array[i]) ergAddValueTest = true;
-            System.out.println(this.zug.get(i));
-            System.out.println(this.array[i]);
+            if (zug.get(i) != array[i]) ergAddValueTest = true;
         }
         return ergAddValueTest;
     }
 
-    //  public boolean insertTest() {
-    //      boolean ergInsertTest = true;
-    //         return ergInsertTest;
-    //    }
-
-    private boolean insertTest() {
+    private boolean test2() {
         boolean ergInsertValueTest = false;
-
+        String[] array = {"Erster", "Zweiter", "Dritter", "Vierter"};
+        List<String> zug = new List();
+        String eins2 = new String("Erster");
+        String zwei2 = new String("Zweiter");
+        String drei2 = new String("Dritter");
+        String vier2 = new String("Vierter");
+        zug.add(eins2);
+        zug.add(zwei2);
+        zug.add(drei2);
+        zug.add(vier2);
+        String neu = "Neuer";
+        zug.add(1, neu);
+        if (zug.get(1) != neu) {
+            ergInsertValueTest = true;
+        }
         return ergInsertValueTest;
     }
 
-//    private boolean getValueTest() {
-    //      boolean ergGetValueTest = true;
-//
-    //      return ergGetValueTest;
-    //}
-
-    private boolean removeTest() {
+    private boolean test3() {
         boolean ergRemoveTest = false;
+        String[] array = {"Erster", "Zweiter", "Dritter", "Vierter"};
+        List<String> zug = new List();
+        String eins3 = new String("Erster");
+        String zwei3 = new String("Zweiter");
+        String drei3 = new String("Dritter");
+        String vier3 = new String("Vierter");
+        zug.add(eins3);
+        zug.add(zwei3);
+        zug.add(drei3);
+        zug.add(vier3);
+        zug.remove(1);
+        if (zug.get(1) != "Zweiter") {
+            ergRemoveTest = true;
+        }
 
+        zug.remove("Zweiter");
+        if (zug.get(2) != "Dritter") {
+            ergRemoveTest = true;
+        }
         return ergRemoveTest;
     }
 }
