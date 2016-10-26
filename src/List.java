@@ -8,9 +8,8 @@ public class List<T> {
     }
 
     public void add(T value) {
-        if (this.first == null) {
-            this.first = new Waggon(value);
-        } else {
+        if (this.first == null) this.first = new Waggon(value);
+        else {
             Waggon w = this.first;
             while (w.next != null) {
                 w = w.next;
@@ -92,7 +91,7 @@ public class List<T> {
         private T value;
         private Waggon next;
 
-        public Waggon(T value) {
+        private Waggon(T value) {
             this.value = value;
         }
     }
