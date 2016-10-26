@@ -2,26 +2,26 @@
  * Created by doetken on 14.09.2016.
  */
 public class List<T> {
-    private Waggon<T> first;
+    private Waggon first;
 
     public List() {
     }
 
     public void add(T value) {
         if (this.first == null) {
-            this.first = new Waggon<>(value);
+            this.first = new Waggon(value);
         } else {
-            Waggon<T> w = this.first;
+            Waggon w = this.first;
             while (w.next != null) {
                 w = w.next;
             }
-            w.next = new Waggon<>(value);
+            w.next = new Waggon(value);
         }
     }
 
     public int size() {
         int counter = 1;
-        Waggon<T> w;
+        Waggon w;
         if (this.first != null) {
             w = first;
             while (w.next != null) {
@@ -33,7 +33,7 @@ public class List<T> {
     }
 
     public T get(int pos) {
-        Waggon<T> w = this.first;
+        Waggon w = this.first;
         if (pos <= size()) {
             for (int i = 0; i < pos; i++) {
                 w = w.next;
@@ -45,8 +45,8 @@ public class List<T> {
     }
 
     public void add(int pos, T valueNeu) {
-        Waggon<T> w = this.first;
-        Waggon<T> wNext = this.first;
+        Waggon w = this.first;
+        Waggon wNext = this.first;
         int i = 0;
 
 //      1. zur Position gehen
@@ -60,15 +60,15 @@ public class List<T> {
             pos++;
         }
         //        3. neuen Waggon einfügen
-        Waggon<T> wNeu = new Waggon<T>(valueNeu);
+        Waggon wNeu = new Waggon(valueNeu);
         w.next = wNeu;
         wNeu.next = wNext;
     }
 
     public void remove(int pos) {
-        Waggon<T> w = this.first;
+        Waggon w = this.first;
         if (pos == 0) {
-            Waggon<T> neuFirst = w.next;
+            Waggon neuFirst = w.next;
             this.first = neuFirst;
         } else {
             int i = 0;
@@ -81,16 +81,16 @@ public class List<T> {
     }
 
     public void remove(T value) {
-        Waggon<T> w = this.first;
+        Waggon w = this.first;
         while (!(w.next.value.equals(value))) {
             w = w.next;
         }
         w.next = w.next.next;
     }
 
-    private class Waggon<T> {
+    private class Waggon {
         private T value;
-        private Waggon<T> next;
+        private Waggon next;
 
         public Waggon(T value) {
             this.value = value;
