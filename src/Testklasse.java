@@ -16,6 +16,32 @@ public class Testklasse {
         if (test3()) {
             System.out.println("Test 3 ist schief gelaufen!");
         }
+        if (test4()) {
+            System.out.println("Test 4 ist schief gelaufen!");
+        }
+    }
+
+    private boolean test4() {
+        boolean iterTest = true;
+        List<String> liste = new List();
+        String[] vergleich = {"Eins", "Zwei", "Drei", "Vier"};
+
+        liste.add("Eins");
+        liste.add("Zwei");
+        liste.add("Drei");
+        liste.add("Vier");
+        int i = 0;
+        for (String s : liste) {
+            if (s.equals(vergleich[i])) {
+                iterTest = false;
+            } else {
+                iterTest = true;
+            }
+//            System.out.println("Liste: " + liste.get(i) + " Array: " + vergleich[i]);
+            i++;
+        }
+
+        return iterTest;
     }
 
     private boolean test1() {
