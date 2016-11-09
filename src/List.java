@@ -1,7 +1,9 @@
+import java.util.Iterator;
+
 /**
  * Created by doetken on 14.09.2016.
  */
-public class List<T> {
+public class List<T> implements Iterator<T> {
     private Waggon first;
 
     public List() {
@@ -93,6 +95,45 @@ public class List<T> {
 
         private Waggon(T value) {
             this.value = value;
+        }
+    }
+
+    public Iterator<T> iterator() {
+        myIterator myer = new myIterator();
+        myer.hasNext();
+        myer.next();
+        return myer;
+    }
+
+//    todo: Auch nochmal als private Klasse bauen
+
+//    public Iterator<T> iterator() {
+//        return new Iterator<T>() {
+//            private Waggon w = first;
+//
+//            public boolean hasNext() {
+//                return w != null;
+//            }
+//
+//            public T next() {
+//                T wert = w.value;
+//                w = w.next;
+//                return wert;
+//            }
+//        };
+//    }
+
+    private class myIterator implements Iterator<T> {
+        private Waggon w = first;
+
+        public boolean hasNext() {
+            return w != null;
+        }
+
+        public T next() {
+            T wert = w.value;
+            w = w.next;
+            return wert;
         }
     }
 }
