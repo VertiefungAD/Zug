@@ -66,7 +66,7 @@ public class List<T> implements Iterator<T> {
         wNeu.next = wNext;
     }
 
-    public void remove(int pos) {
+    public T remove(int pos) {
         Waggon w = this.first;
         if (pos == 0) {
             Waggon neuFirst = w.next;
@@ -79,14 +79,17 @@ public class List<T> implements Iterator<T> {
             }
             w.next = w.next.next;
         }
+        return w.value;
     }
 
-    public void remove(T value) {
+    public T remove(T value) {
         Waggon w = this.first;
         while (!(w.next.value.equals(value))) {
             w = w.next;
         }
         w.next = w.next.next;
+
+        return value;
     }
 
     private class Waggon {
