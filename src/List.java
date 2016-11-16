@@ -3,11 +3,9 @@ import java.util.Iterator;
 /**
  * Created by doetken on 14.09.2016.
  */
-public class List<T> implements Iterator<T> {
+public class List<T> implements Iterable<T> {
     private Waggon first;
 
-    public List() {
-    }
 
     public void add(T value) {
         if (this.first == null) this.first = new Waggon(value);
@@ -46,24 +44,25 @@ public class List<T> implements Iterator<T> {
     }
 
     public void add(int pos, T valueNeu) {
+        if (pos == 0) {
+            Waggon w = new Waggon(valueNeu);
+            w.next = this.first;
+            first = w;
+            return;
+        }
+
         Waggon w = this.first;
-        Waggon wNext = this.first;
         int i = 0;
 
-//      1. zur Position gehen
-        while (pos <= i) {
+
+        while (pos < i) {
             w = w.next;
             pos++;
         }
-//       2. nächsten Waggon merken
-        while (pos <= i + 1) {
-            wNext = wNext.next;
-            pos++;
-        }
-        //        3. neuen Waggon einfügen
+
         Waggon wNeu = new Waggon(valueNeu);
+        wNeu.next = w.next;
         w.next = wNeu;
-        wNeu.next = wNext;
     }
 
     public T remove(int pos) {
@@ -88,8 +87,11 @@ public class List<T> implements Iterator<T> {
             w = w.next;
         }
         w.next = w.next.next;
-
         return value;
+    }
+
+    public boolean isEmpty() {
+        return first == null;
     }
 
     private class Waggon {
@@ -101,43 +103,22 @@ public class List<T> implements Iterator<T> {
         }
     }
 
+
     public Iterator<T> iterator() {
-        myIterator myer = new myIterator();
-        myer.hasNext();
-        myer.next();
-        return myer;
+        return new Iterator<T>() {
+            private Waggon w = first;
+
+            public boolean hasNext() {
+                return w != null;
+            }
+
+            public T next() {
+                T t = w.value;
+                w = w.next;
+                return t;
+            }
+        };
     }
 
-//    todo: Auch nochmal als private Klasse bauen
-
-//    public Iterator<T> iterator() {
-//        return new Iterator<T>() {
-//            private Waggon w = first;
-//
-//            public boolean hasNext() {
-//                return w != null;
-//            }
-//
-//            public T next() {
-//                T wert = w.value;
-//                w = w.next;
-//                return wert;
-//            }
-//        };
-//    }
-
-    private class myIterator implements Iterator<T> {
-        private Waggon w = first;
-
-        public boolean hasNext() {
-            return w != null;
-        }
-
-        public T next() {
-            T wert = w.value;
-            w = w.next;
-            return wert;
-        }
-    }
 }
 
