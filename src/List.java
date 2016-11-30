@@ -7,15 +7,22 @@ public class List<T> implements Iterable<T> {
     private Waggon first;
 
 
-    public void add(T value) {
-        if (this.first == null) this.first = new Waggon(value);
-        else {
-            Waggon w = this.first;
-            while (w.next != null) {
-                w = w.next;
-            }
-            w.next = new Waggon(value);
+//    public void add(T value) {
+//        if (this.first == null) this.first = new Waggon(value);
+//        else {
+//            Waggon w = this.first;
+//            while (w.next != null) {
+//                w = w.next;
+//            }
+//            w.next = new Waggon(value);
+//        }
+//    }
+//      add-rekursiv
+    public void add(T value){
+        if(first==null) {
+            first=new Waggon(value);
         }
+//        add(first, value);
     }
 
 //    public int size() {
