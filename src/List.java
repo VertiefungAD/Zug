@@ -18,17 +18,32 @@ public class List<T> implements Iterable<T> {
         }
     }
 
+//    public int size() {
+//        int counter = 1;
+//        Waggon w;
+//        if (this.first != null) {
+//            w = first;
+//            while (w.next != null) {
+//                counter++;
+//                w = w.next;
+//            }
+//        }
+//        return counter;
+//    }
+
+//      Rekursiv ohne Schleifen:
     public int size() {
-        int counter = 1;
-        Waggon w;
-        if (this.first != null) {
-            w = first;
-            while (w.next != null) {
-                counter++;
-                w = w.next;
-            }
-        }
-        return counter;
+        return size(first);
+    }
+
+//      Private Methode, weil wir noch einen Parameter brauchen, den wir übergeben:
+    private int size(Waggon w) {
+//        Leerer Zug?
+        if (w == null) return 0;
+//      Rekursionsschritt (Selbstaufruf mit dem nächsten)
+//      Wagen laufen ganz durch, bis keiner mehr kommt, dann weiss der Letzte, dass bei ihm Länge 1 ist, dann geht´s
+//      zurück und alle zählen jeweils einen drauf
+        return size(w.next)+1;
     }
 
     public T get(int pos) {
