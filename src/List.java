@@ -7,7 +7,7 @@ public class List<T> implements Iterable<T> {
     private Waggon first;
 
 
-//    public void add(T value) {
+    //    public void add(T value) {
 //        if (this.first == null) this.first = new Waggon(value);
 //        else {
 //            Waggon w = this.first;
@@ -17,10 +17,10 @@ public class List<T> implements Iterable<T> {
 //            w.next = new Waggon(value);
 //        }
 //    }
-//      add-rekursiv
-    public void add(T value){
-        if(first==null) {
-            first=new Waggon(value);
+//     todo add-rekursiv
+    public void add(T value) {
+        if (first == null) {
+            first = new Waggon(value);
         }
 //        add(first, value);
     }
@@ -38,31 +38,43 @@ public class List<T> implements Iterable<T> {
 //        return counter;
 //    }
 
-//      Rekursiv ohne Schleifen:
+    //      Rekursiv ohne Schleifen:
     public int size() {
         return size(first);
     }
 
-//      Private Methode, weil wir noch einen Parameter brauchen, den wir übergeben:
+    //      Private Methode, weil wir noch einen Parameter brauchen, den wir übergeben:
     private int size(Waggon w) {
 //        Leerer Zug?
         if (w == null) return 0;
 //      Rekursionsschritt (Selbstaufruf mit dem nächsten)
 //      Wagen laufen ganz durch, bis keiner mehr kommt, dann weiss der Letzte, dass bei ihm Länge 1 ist, dann geht´s
 //      zurück und alle zählen jeweils einen drauf
-        return size(w.next)+1;
+        return size(w.next) + 1;
     }
+
+//    public T get(int pos) {
+//        Waggon w = this.first;
+//        if (pos <= size()) {
+//            for (int i = 0; i < pos; i++) {
+//                w = w.next;
+//            }
+//            return w.value;
+//        } else {
+//            throw new RuntimeException("Position überschreitet Größe");
+//        }
+//    }
 
     public T get(int pos) {
         Waggon w = this.first;
-        if (pos <= size()) {
-            for (int i = 0; i < pos; i++) {
-                w = w.next;
-            }
-            return w.value;
-        } else {
-            throw new RuntimeException("Position überschreitet Größe");
-        }
+        if (pos > size()) return w.value;
+        return get(w, pos);
+    }
+
+    private T get(int pos,Waggon w) {
+    if (pos<0) return w.value;
+        pos--;
+        return get(pos, w.next);
     }
 
     public void add(int pos, T valueNeu) {
