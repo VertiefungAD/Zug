@@ -96,6 +96,7 @@ public class List<T> implements Iterable<T> {
         w.next = wNeu;
     }
 
+//    todo
     public T remove(int pos) {
         Waggon w = this.first;
         if (pos == 0) {
