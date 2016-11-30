@@ -66,15 +66,12 @@ public class List<T> implements Iterable<T> {
 //    }
 
     public T get(int pos) {
-        Waggon w = this.first;
-        if (pos > size()) return w.value;
-        return get(w, pos);
+        return get(pos, first);
     }
 
-    private T get(int pos,Waggon w) {
-    if (pos<0) return w.value;
-        pos--;
-        return get(pos, w.next);
+    private T get(int pos, Waggon w) {
+        if (pos == 0) return w.value;
+        return get(pos-1, w.next);
     }
 
     public void add(int pos, T valueNeu) {
